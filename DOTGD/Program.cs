@@ -22,13 +22,7 @@ public class Program
         mat4 model = mat4.Identity;
         model = mat4.Translate(0,0,0);
         mat4 projectMatrix = mat4.Frustum(-1,1,-1,1,.2f,100);
-        
-
-       
-        
-        ToGDRenderEngine.Render(RgbColor.FromHex("#ff0000"),-vec3.UnitZ,editedLevel,modelLoader, model, projectMatrix,1920,1080);
-        List<ExtendedBlock> blocks = new List<ExtendedBlock>();
-        blocks.AddRange([new ExtendedBlock(1), new ExtendedBlock(1), new ExtendedBlock(1), new ExtendedBlock(1)]);
+        ToGDRenderEngine.Render(RgbColor.FromHex("#ff0000"),new vec3(1,-1,-1).Normalized,editedLevel,modelLoader, model, projectMatrix,1920,1080);
         levelEditing.saveLevel(editedLevel);
     }
     

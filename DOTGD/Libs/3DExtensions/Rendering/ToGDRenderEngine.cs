@@ -1,4 +1,5 @@
 ﻿using DOTGD.Libs._3DExtensions.Primitives;
+using DOTGD.Libs.DotPieTriggers;
 using DotPieGDLib;
 using GeometryDashAPI.Levels;
 using GeometryDashAPI.Levels.Structures;
@@ -16,7 +17,6 @@ namespace DOTGD.Libs._3DExtensions.Rendering
     internal class ToGDRenderEngine
     {
         
-        
         public static void Render(RgbColor objectColor,vec3 lightDirection,Level levelInstance,LoadModel model,mat4 modelMatrix,mat4 projectMatrix,float width,float height)
         {
             //var projectedModel = Matrix4x4.CreatePerspectiveFieldOfView(fov, 1920 / 1080, .2f, 1000);
@@ -24,11 +24,19 @@ namespace DOTGD.Libs._3DExtensions.Rendering
             {
                 faceProcess(objectColor,lightDirection,poly, modelMatrix,projectMatrix,width,height, levelInstance);
             }
+            var i = 0;
+            var sortedGrads= Data.globalGradients.OrderBy(grad => grad.PositionX);
+            sortedGrads.ToList().ForEach((grad) =>
+            {
+                grad.PositionX = i;
+                i -= 10;
+                levelInstance.AddBlock(grad);
+            });
         }
         public static void faceProcess(RgbColor objectColor,vec3 lightDirection,Primitives.Triangle poly, mat4 modelMatrix, mat4 projectMatrix, float width, float height, Level levelIns)
         {
             List<ExtendedBlock> blocks = new List<ExtendedBlock>();
-            blocks.AddRange([new ExtendedBlock(1) { EditorL=1}, new ExtendedBlock(1) { EditorL = 1 }, new ExtendedBlock(1) { EditorL = 1 }, new ExtendedBlock(1) { EditorL = 1 }]);
+            blocks.AddRange([new ExtendedBlock(53) { EditorL=1}, new ExtendedBlock(53) { EditorL = 1 }, new ExtendedBlock(53) { EditorL = 1 }, new ExtendedBlock(53) { EditorL = 1 }]);
             poly.draw(blocks[0], blocks[1], blocks[2], blocks[3],lightDirection,objectColor,width,height,modelMatrix,projectMatrix, levelIns);
             if (poly is Quad)
             {

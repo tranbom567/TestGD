@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DOTGD.Libs.DotPieTriggers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,6 @@ namespace DOTGD.Libs
         public static int freeID = 1;
         public static int freeGradId=0;
         public static int freeColor = 10;
+        public static List<Gradient>globalGradients = new List<Gradient>();
     }
 }

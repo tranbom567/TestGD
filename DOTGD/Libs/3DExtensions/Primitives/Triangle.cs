@@ -83,9 +83,10 @@ namespace DOTGD.Libs._3DExtensions.Primitives
                 id=Data.freeGradId,
                 vertexMode=true,
             };
+            Data.globalGradients.Add(drawGrad);
             Data.freeColor++;
             Data.freeGradId++;
-            levelIns.AddBlock(drawGrad);
+            //levelIns.AddBlock(drawGrad);
 
         }
     }
